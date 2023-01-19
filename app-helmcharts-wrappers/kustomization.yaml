@@ -1,0 +1,15 @@
+# Placing this k8s kustomization.yaml in this path to see if, doing so, we avoid
+# the KRM compliant yamls not referenced from .resources (stanza (see below) are
+# so excluded from the reconciliation applied on the flux kustomization object
+# pointing to the path were this file is placed (inclduing to exclude the KRM
+# compliant yamls in the sub-folders)
+#
+# NOTE: without this file we tested/checked that whatever KRM compliant yaml placed in
+# this folder and/or subfolders is deployed as part of that flux kustomization object
+# reconciliation (as kustomization-controller run a "kustomize create --recursive"
+# whne not finding a valid "kustomization.yaml")
+#
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- configmap-one.yaml
